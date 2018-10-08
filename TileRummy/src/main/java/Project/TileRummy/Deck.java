@@ -18,4 +18,11 @@ public class Deck {
 	public void shuffle() {
 		Collections.shuffle(deck);
 	}
+	
+	public Tile dealTile() {
+		Tile tile = deck.get(0);
+		deck.remove(0);
+		size--;
+		return tile;
+	}
 }

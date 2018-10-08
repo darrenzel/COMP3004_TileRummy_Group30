@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 class DeckTest {
 
 	@Test
-	void testshuffle() {
+	void testDeck() {
 		//compare card at the same index before and after the shuffle
 		Deck deck = new Deck();
 		Tile a = deck.deck.get(1);
@@ -16,11 +16,13 @@ class DeckTest {
 		assertNotSame(a,b);
 		//test if deck has 104 cards
 		assertEquals(104,deck.size);
+		
+		Deck deck2 = new Deck();
+		Tile c = deck2.deck.get(0);
+		Tile d = new Tile(1,"green");
+		assertSame(c.color,d.color);
+		assertSame(c.value,d.value);
+
 	}
-	void testDealTile() {
-		Deck deck = new Deck();
-		Tile a = deck.deck.get(0);
-		Tile b = new Tile(1,"green");
-		assertEquals(a,b);
-	}
+	
 }
