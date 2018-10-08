@@ -9,9 +9,9 @@ class DeckTest {
 	@Test
 	void test() {
 		Deck deck = new Deck();
-		Tile a = deck.get(1);
+		Tile a = deck.deck.get(1);
 		deck.shuffle();
-		Tile b = deck.get(1);
+		Tile b = deck.deck.get(1);
 		assertNotSame(a,b);
 	}
 
