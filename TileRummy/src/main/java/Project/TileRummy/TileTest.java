@@ -10,7 +10,7 @@ class TileTest {
 	void test() {
 		Tile tile = new Tile(3,"green");
 		String tileString = "green 3";
-		assertEquals(tileString, tile.toString());
+	assertEquals(tileString, tile.toString());
 	}
 
 }
