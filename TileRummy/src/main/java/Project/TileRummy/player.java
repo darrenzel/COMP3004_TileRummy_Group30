@@ -38,8 +38,32 @@ public abstract class player {
 		return false;
 	}
 	
-	Boolean winCheck();
-	Boolean endTurn();
+	Boolean winCheck(ArrayList<Integer> hand)
+	{
+		if(hand == null)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	Boolean endTurn(ArrayList<Integer> hand)
+	{
+		Scanner scanner = new Scanner(System.in);
+		String decision; 
+		System.out.print("Do you want to end your turn?(y/n");
+		decision = scanner.next();
+		if(decision == "y" || decision == "Y")
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	@Override
 	public String toString()
