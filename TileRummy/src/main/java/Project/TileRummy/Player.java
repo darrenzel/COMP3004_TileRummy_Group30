@@ -1,9 +1,11 @@
 package Project.TileRummy;
 
+import java.util.Scanner;
+
 import java.util.*;
 import java.util.Map.Entry;
 
-public abstract class player {
+public abstract class Player {
 	public ArrayList<Tile> hand;
 	public String name;
 	public int index;
@@ -38,13 +40,39 @@ public abstract class player {
 		return false;
 	}
 	
-	Boolean winCheck();
-	Boolean endTurn();
+	public Boolean winCheck() {
+		if(this.checkValidity == true)
+		{
+			if(this.hand == null)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Boolean endTurn() {
+		Scanner sca = new Scanner(System.in);
+		System.out.println("Do you want to end your turn?(y/n)")
+		char command = sca.next();
+		if(command.equals('y'))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	
 	@Override
 	public String toString()
 	{
-		return this.hand + " " + this.name + " " + this.index;
+		String hands = "+";
+        for (int i = 0; i < this.hand.size(); i++) {
+            hands += " " + this.hand.get(i);
+        }
+		return hands + " " + this.name + " " + this.index;
 	}
 
 }
