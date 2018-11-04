@@ -1,7 +1,7 @@
 package Project.TileRummy;
 import java.util.*;
 public class Deck {
-	final String[] colors = {"green", "red", "black","blue"};
+	final String[] colors = {"green", "red", "orange","blue"};
 	 List<Tile> deck = new ArrayList<Tile>();
 	 int size;
 	Deck(){
