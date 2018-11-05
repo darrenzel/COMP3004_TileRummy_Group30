@@ -74,12 +74,12 @@ public class AI2 extends Player {
 					prev2=temp.get(i);
 					colors.add(temp.get(i).color);
 					
-					for(Tile s : meld) {
-						System.out.println("adding to meld : "+s+" size: "+meld.size());
-
-					}
+//					for(Tile s : meld) {
+//						System.out.println("adding to meld : "+s+" size: "+meld.size());
+//
+//					}
 				}
-				 if((count2==3 && temp.get(i).value!=prev2.value )||count2==4){
+				 if(count2==3||count2==4){
 					//a valid meld
 					nextplay.addAll(meld);
 					System.out.println("adding to meld!!!!!!!!!!!!!! : ");
@@ -99,11 +99,7 @@ public class AI2 extends Player {
 					colors.clear();
 					colors.add(prev2.color);
 				}
-				for(String s : colors) {
-					System.out.println("colors : "+s);
-					System.out.println("count is : "+count2);
-
-				}
+				
 				
 			}
 		}
