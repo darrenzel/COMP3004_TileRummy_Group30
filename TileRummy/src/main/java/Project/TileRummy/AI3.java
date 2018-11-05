@@ -32,7 +32,7 @@ public class AI3 extends Player{
 	}
 	
 	//the functions that play only tiles of hand and tiles on the table(do not play hands only)
-	public boolean makeMeldBetweenHandAndTable(ArrayList<Tile> hand,Table t){
+	public void makeMeldBetweenHandAndTable(ArrayList<Tile> hand,Table t){
 		Set<Integer> keys = t.table.keySet();
 		//tiles that not be melded with others
 		/*ArrayList<Tile> tilesNotMeld = new ArrayList<Tile>();
@@ -41,34 +41,65 @@ public class AI3 extends Player{
 				tilesNotMeld.add(d.hand.get(i));
 			}
 		}*/
-		
-		for(Tile currTile:hand) {
-			for(Map.Entry<Integer,ArrayList<Tile>> meld:t.table.entrySet()){
-				ArrayList<Tile> temp = new ArrayList<Tile>();
-				for(int i:keys) {
-					ArrayList<Tile> tList = t.table.get(i);
-		            for(Tile tile : tList) {
-		            	temp.add(tile);
-		            }
-				}
+		for(Map.Entry<Integer,ArrayList<Tile>> meld:t.table.entrySet()){
+			ArrayList<Tile> temp = new ArrayList<Tile>();
+			for(int i:keys) {
+				ArrayList<Tile> tList = t.table.get(i);
+	            for(Tile tile : tList) {
+	            	temp.add(tile);
+	            }
+			}
+			for(int k = 0; k < hand.size(); k++) {
+				Tile currTile = hand.get(k);
 				//check if the tile can be added to the front of a meld on table
-				if(meld.getValue().get(0).value == currTile.value + 1) {
+				if(meld.getValue().get(0).value == currTile.value + 1 && currTile.color == meld.getValue().get(meld.getValue().size() - 1).color) {
 					temp.add(0,currTile);
-						t.table.put(meld.getKey(), temp);
-						hand.remove(currTile);
-					return true;
+					t.table.put(meld.getKey(), temp);
+					hand.remove(currTile);
 				}
 				//check if the tile can be added to the back of a meld on table
-				if(meld.getValue().get(meld.getValue().size() - 1).value == currTile.value - 1) {
+				if(meld.getValue().get(meld.getValue().size() - 1).value == currTile.value - 1 && currTile.color == meld.getValue().get(0).color) {
 					temp.add(currTile);
 					t.table.put(meld.getKey(), temp);
 					hand.remove(currTile);
-					return true;
 				}
+				
+				//check the tile can be added to the meld have the same value
+				ArrayList<String> colors = new ArrayList<String>();
+				if(temp.size() == 3) {
+					for(int n = 0; n < temp.size(); n++) {
+						colors.add(temp.get(n).color);
+					}
+					if(colors.contains(currTile.color)) {
+						temp.add(currTile);
+						t.table.put(meld.getKey(), temp);
+					}
+					
+				}
+				/*while(k!=hand.size()-1){
+					makeMeldBetweenHandAndTable(hand,t);
+				}*/
 			}
+			//check the tile can be added to the meld have the same value
+			//temp.clear();
 		}	
-		return false;
+		
+		
 	}
+	
+	/*
+	//check the tile can be added to the meld have the same value
+	ArrayList<String> colors = new ArrayList<String>();
+	if(temp.size() == 3) {
+		for(int n = 0; n < temp.size(); n++) {
+			colors.add(temp.get(n).color);
+		}
+		if(colors.contains(currTile.color)) {
+			temp.add(currTile);
+			t.table.put(meld.getKey(), temp);
+		}
+		
+	}*/
 	
 	
 	public void play(){
