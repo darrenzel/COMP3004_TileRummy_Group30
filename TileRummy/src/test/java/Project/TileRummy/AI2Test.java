@@ -25,6 +25,8 @@ class AI2Test {
 		hand.add(new Tile(13,"orange"));
 		hand.add(new Tile(2,"orange"));
 		hand.add(new Tile(5,"orange"));
+		hand.add(new Tile(13,"blue"));
+
 		AI2 player = new AI2(hand,"test",2);
 		
 		
