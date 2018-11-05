@@ -1,9 +1,9 @@
 package Project.TileRummy;
 import java.util.Comparator;
 public class Tile {
-	int value;
-	String color;
-	 Tile(int value, String color) {
+	public int value;
+	public String color;
+	public Tile(int value, String color) {
 		this.value = value;
 		this.color = color;
 	}
@@ -18,11 +18,9 @@ public class Tile {
 	}
 	public static Comparator<Tile> colorComparator = new Comparator<Tile>() {
 		public int compare(Tile t1, Tile t2) {
-			int result = t1.color.compareTo(t2.color);
-			if(result ==0) {
-				result = t1.value-t2.value;
-			}
-			return result;
+			String color1 = t1.color;
+			String color2 = t2.color;
+			return color1.compareTo(color2);
 		}
 	};
 	public static Comparator<Tile> valueComparator = new Comparator<Tile>() {

@@ -13,9 +13,9 @@ public class Hand  {
 		hand.add(tile);
 		size++;
 	}
-	public Tile remove(int tile) {
-		return hand.remove(title);
-	}
+//	public Tile remove(int tile) {
+//		return hand.remove(title);
+//	}
 	public int size() {
 		return size;
 	}
