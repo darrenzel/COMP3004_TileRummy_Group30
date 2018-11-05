@@ -45,19 +45,20 @@ class AI1Test {
 		expected.add(new Tile(2,"blue"));
 		expected.add(new Tile(3,"blue"));
 		expected.add(new Tile(4,"blue"));
-		
+		System.out.println("-------------------");
 		ArrayList<Tile> out = player.play();
+		System.out.println("-------------------");
+
 		for(int i=0; i<expected.size(); i++) {
 			assertEquals(expected.get(i).toString(),out.get(i).toString());
 		}	
 	}
-	}
+	
 	@Test
 	void testMutlMeld() {
 		ArrayList<Tile> hand = new ArrayList<>();
 		hand.add(new Tile(2,"blue"));
 		hand.add(new Tile(3,"blue"));
-		hand.add(new Tile(4,"blue"));
 		hand.add(new Tile(11,"blue"));
 		hand.add(new Tile(13,"green"));
 		hand.add(new Tile(3,"green"));
@@ -69,6 +70,8 @@ class AI1Test {
 		hand.add(new Tile(13,"orange"));
 		hand.add(new Tile(2,"orange"));
 		hand.add(new Tile(5,"orange"));
+		hand.add(new Tile(4,"blue"));
+
 
 		AI1 player = new AI1(hand,"test",1);
 		
@@ -79,8 +82,9 @@ class AI1Test {
 		expected.add(new Tile(3,"blue"));
 		expected.add(new Tile(4,"blue"));
 		expected.add(new Tile(13,"green"));
-		expected.add(new Tile(13,"orange"));
 		expected.add(new Tile(13,"red"));
+		expected.add(new Tile(13,"orange"));
+
 
 //		ArrayList<ArrayList<Tile>> expected2 = new ArrayList<>();
 //		expected2.add(expected);

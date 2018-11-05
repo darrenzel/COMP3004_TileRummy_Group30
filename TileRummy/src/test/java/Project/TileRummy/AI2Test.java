@@ -50,6 +50,19 @@ class AI2Test {
 		for(int i=0; i<expected.size(); i++) {
 			assertEquals(expected.get(i).toString(),out.get(i).toString());
 		}
+		
+		ArrayList<Tile> output = new ArrayList<>();
+		int index=0;
+		int curr =0;
+		while(player.melds.peek()!=null) {
+			curr += player.melds.poll();
+			for(int i=index; i<curr; i++) {
+				System.out.print(out.get(i).toString()+ " ");
+			}
+			index += curr;
+			System.out.println("");
+		}
+		
 //		for(ArrayList<Tile> i:expected) {
 //			System.out.println("first for loop size: "+ expected2.get(i).size());
 //			for(int j=0; j<expected2.get(i).size(); j++) {

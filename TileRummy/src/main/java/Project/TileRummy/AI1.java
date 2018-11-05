@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
-public class AI2 extends Player {
+
+public class AI1 extends Player {
 	ArrayList<Tile> nextplay =new ArrayList<>();
 	ArrayList<Tile> meld = new ArrayList<>();
 	
 	Queue<Integer> melds = new LinkedList<>();
-	public AI2(ArrayList<Tile> hand, String name, int index) {
+	public AI1(ArrayList<Tile> hand, String name, int index) {
 		super(hand, name, index);
 	}
-	
-	public ArrayList<Tile> play() {
+public ArrayList<Tile> play() {
 		
 		
 		ArrayList<Tile> temp = new ArrayList<Tile>();
@@ -22,7 +22,7 @@ public class AI2 extends Player {
 		if(temp.size()>0) {
 			int count =1;
 			Tile prev = temp.get(0);
-			Collections.sort(hand, Tile.colorComparator);
+			Collections.sort(temp, Tile.colorComparator);
 			
 			meld.add(0,temp.get(0));
 //			System.out.println("meld added 0");
@@ -109,12 +109,9 @@ public class AI2 extends Player {
 			}
 		}
 //		nextplay.addAll(meld);
-//		for(int i=0; i<nextplay.size(); i++) {
-//			System.out.println("final output: "+nextplay.get(i).toString());
-//		}
+		for(int i=0; i<nextplay.size(); i++) {
+			System.out.println("final output: "+nextplay.get(i).toString());
+		}
 		return nextplay;
 	}
-	
-
-	
 }
