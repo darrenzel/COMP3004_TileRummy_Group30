@@ -33,6 +33,8 @@ class AI2Test {
 		
 		
 		ArrayList<Tile> expected = new ArrayList<>();
+		ArrayList<Tile> expected1 = new ArrayList<>();
+
 		expected.add(new Tile(2,"blue"));
 		expected.add(new Tile(3,"blue"));
 		expected.add(new Tile(4,"blue"));
@@ -40,12 +42,23 @@ class AI2Test {
 		expected.add(new Tile(13,"orange"));
 		expected.add(new Tile(13,"red"));
 
+//		ArrayList<ArrayList<Tile>> expected2 = new ArrayList<>();
+//		expected2.add(expected);
+//		expected2.add(expected1);
 		
 		ArrayList<Tile> out = player.play();
 		for(int i=0; i<expected.size(); i++) {
 			assertEquals(expected.get(i).toString(),out.get(i).toString());
-
 		}
+//		for(ArrayList<Tile> i:expected) {
+//			System.out.println("first for loop size: "+ expected2.get(i).size());
+//			for(int j=0; j<expected2.get(i).size(); j++) {
+//				System.out.println("SSSSSS");
+//				assertEquals(expected2.get(i).get(j).toString(),out.get(i).get(j).toString());
+////				System.out.println("expected: "+ expected2.get(i).get(j).toString());
+////				System.out.println("getting: "+out.get(i).get(j).toString());
+//			}
+//		}
 	}
 
 }
