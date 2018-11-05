@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import Project.TileRummy.AI3;
+
 import java.util.ArrayList;
 
 class AI3Test {

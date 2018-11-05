@@ -19,13 +19,12 @@ public class Deck {
 		Collections.shuffle(deck);
 	}
 	
-	public startGameDeal()
 	
-	public Tile dealTile(Player p) {
+	
+	public Tile dealTile() {
 		Tile tile = deck.get(0);
 		deck.remove(0);
 		size--;
-		p.hand.add(tile);
 		return tile;
 	}
 }

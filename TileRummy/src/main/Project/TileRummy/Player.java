@@ -16,19 +16,9 @@ public abstract class Player {
 	
 	
 
-	public  abstract  void play(Table table);
+	public  abstract  ArrayList<Tile> play(Table table);
 	
-	public void printHand()
-	{
-		for(Tile meld:this.hand)
-		{
-			for(Tile tile:ArrayList<Tile>)
-			{
-				System.out.println(tile.color + "-" + tile.value);
-			}
-			System.out.println();
-		}
-	}
+	
 	
 	//Check 
 	/*
@@ -70,32 +60,21 @@ public abstract class Player {
 	}
 	*/
 	
-	public Boolean winCheck(ArrayList<Integer> hand)
-	{
-		if(hand == null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	
+	
+	
+	
+	public void printPlayerInformation() {
+		System.out.println("---------------------------------------------------------");
+		System.out.println("Name: "+name);
+		System.out.println("Index: "+index);
+		System.out.println("Number of Tiles: "+hand.size());
+		System.out.println(hand);
+
+		System.out.println("---------------------------------------------------------");
 	}
-	Boolean endTurn(ArrayList<Integer> hand)
-	{
-		Scanner scanner = new Scanner(System.in);
-		String decision; 
-		System.out.print("Do you want to end your turn?(y/n");
-		decision = scanner.next();
-		if(decision == "y" || decision == "Y")
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
-	}
+	
+	
 	
 	@Override
 	public String toString()
