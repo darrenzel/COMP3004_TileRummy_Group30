@@ -29,20 +29,20 @@ public class RealPlayer extends Player {
 		if(moveChoice == 1)
 		{
 			System.out.println("Write down the index of the tile you want to move.(Press Enter after each)");
-			int startIndex = sca.nextInt();
+			int startIndex = sca.nextInt()-1;
 			System.out.println("Write down the row and the index of the tile you want to put.(Press Enter after each)");
-			int endRow = sca.nextInt();
-			int endIndex = sca.nextInt();
+			int endRow = sca.nextInt()-1;
+			int endIndex = sca.nextInt()-1;
 			changeHandTile(table,startIndex,endRow,endIndex);
 		}
 		else if(moveChoice == 2)
 		{
 			System.out.println("Write down the row and the index of the tile you want to move.(Press Enter after each)");
-			int startRow = sca.nextInt();
-			int startIndex = sca.nextInt();
+			int startRow = sca.nextInt()-1;
+			int startIndex = sca.nextInt()-1;
 			System.out.println("Write down the row and the index of the tile you want to put.(Press Enter after each)");
-			int endRow = sca.nextInt();
-			int endIndex = sca.nextInt();
+			int endRow = sca.nextInt()-1;
+			int endIndex = sca.nextInt()-1;
 			changeTableTile(table,startRow, startIndex, endRow, endIndex);
 		}
 		
@@ -66,27 +66,18 @@ public class RealPlayer extends Player {
 			ArrayList<Tile> endMeld = table.table.get(endRow);
 			endMeld.add(endIndex, tempTile);
 			table.table.put(endRow, endMeld);
+			table.table.remove(startRow);
 		}
 	}
 	
 	public void changeHandTile(Table table, int startIndex, int endRow, int endIndex)
 	{
-		if(table.table.get(endRow).isEmpty())
-		{
-			ArrayList<Tile> startTable = new ArrayList();
-			Tile tempTile = this.hand.get(startIndex);
-			ArrayList<Tile> endMeld = table.table.get(endRow);
-			endMeld.add(endIndex, tempTile);
-			table.table.put(endRow, endMeld);
-			
-		}
-		else
-		{
-			Tile tempTile = this.hand.get(startIndex);
-			ArrayList<Tile> endMeld = table.table.get(endRow);
-			endMeld.add(endIndex, tempTile);
-			table.table.put(endRow, endMeld);
-		}
+		
+		Tile tempTile = this.hand.get(startIndex);
+		ArrayList<Tile> endMeld = table.table.get(endRow);
+		endMeld.add(endIndex, tempTile);
+		table.table.put(endRow, endMeld);
+		this.hand.remove(startIndex);
 	}
 
 	

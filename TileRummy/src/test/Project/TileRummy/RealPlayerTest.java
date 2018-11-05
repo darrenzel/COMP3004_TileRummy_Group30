@@ -32,13 +32,16 @@ class RealPlayerTest {
 	@Test
 	public void changeHandTile() 
 	{
-		t.table.put(0, startTable);
+		for(int i = 0; i <= 33; i ++)
+		{
+			t.table.put(new ArrayList<Tile>(Arrays.asList({}), startTable);
+		}
 		rp.hand.add(tile1);
 		rp.hand.add(tile2);
 		System.out.println("hand : " + rp.hand);
 		System.out.println("table : " + t.table);
-		rp.changeHandTile(t, 0, 0, 0);
-		assertEquals(tile1, t.table.get(0).get(0));
+		rp.changeHandTile(t, 0, 1, 0);
+		assertEquals(tile1, t.table.get(1).get(0));
 		System.out.println("hand : " + rp.hand);
 		System.out.println("table : " + t.table);
 	}
