@@ -6,7 +6,7 @@ public abstract class Player {
 	public ArrayList<Tile> hand;
 	public String name;
 	public int index;
-	
+	private HashMap<Integer, ArrayList<Tile>> table;
 	public Player(ArrayList<Tile> hand, String name, int index)
 	{
 		this.hand = hand;
@@ -48,6 +48,12 @@ public abstract class Player {
 	public String toString()
 	{
 		return this.hand + " " + this.name + " " + this.index;
+	}
+
+
+	public void update(HashMap<Integer, ArrayList<Tile>> table) {
+		// TODO Auto-generated method stub
+		this.table=table;
 	}
 
 }

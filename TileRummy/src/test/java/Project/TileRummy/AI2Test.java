@@ -6,13 +6,46 @@ import static org.junit.Assert.assertSame;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
 class AI2Test {
-
 	@Test
-	void test() {
+	void testPlayTable() {
+		ArrayList<Tile> row1 = new ArrayList<>();
+		ArrayList<Tile> row2 = new ArrayList<>();
+		row1.add(new Tile(2,"blue"));
+		row1.add(new Tile(3,"blue"));
+		row1.add(new Tile(4,"blue"));
+
+			
+		
+		HashMap<Integer, ArrayList<Tile>> table = new HashMap<>();
+		table.put(0, row1);
+		table.put(1,row2);
+		
+		ArrayList<Tile> hand = new ArrayList<>();
+		hand.add(new Tile(1,"blue"));
+		
+		AI2 player = new AI2(hand,"test",2);
+
+		ArrayList<Tile> out = new ArrayList<>();
+		ArrayList<Tile> expected = new ArrayList<>();
+
+		expected.add(new Tile(1,"blue"));
+		out = player.playTable(table);
+		System.out.println("1");
+		System.out.println("expected: "+ expected.get(0).toString());
+		System.out.println("getting : "+ out.get(0).toString());
+
+
+		for(int i=0; i<expected.size(); i++) {
+			assertEquals(expected.get(i).toString(), out.get(i).toString());
+		}
+	}
+	@Test
+	void testPlayHand() {
 		ArrayList<Tile> hand = new ArrayList<>();
 		hand.add(new Tile(2,"blue"));
 		hand.add(new Tile(3,"blue"));
@@ -46,7 +79,7 @@ class AI2Test {
 //		expected2.add(expected);
 //		expected2.add(expected1);
 		
-		ArrayList<Tile> out = player.play();
+		ArrayList<Tile> out = player.playHand();
 		for(int i=0; i<expected.size(); i++) {
 			assertEquals(expected.get(i).toString(),out.get(i).toString());
 		}

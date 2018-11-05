@@ -2,18 +2,26 @@ package Project.TileRummy;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Observer;
+import java.util.Observable;
 
-public class AI1 extends Player {
+public class AI1 extends Player implements Observer {
 	ArrayList<Tile> nextplay =new ArrayList<>();
 	ArrayList<Tile> meld = new ArrayList<>();
-	
+	public HashMap<Integer, ArrayList<Tile>> table;
+
 	Queue<Integer> melds = new LinkedList<>();
 	public AI1(ArrayList<Tile> hand, String name, int index) {
 		super(hand, name, index);
 	}
-public ArrayList<Tile> play() {
+	
+	public void update(HashMap<Integer, ArrayList<Tile>> table) {
+		this.table=table;
+	}
+	public ArrayList<Tile> play() {
 		
 		
 		ArrayList<Tile> temp = new ArrayList<Tile>();
@@ -39,6 +47,7 @@ public ArrayList<Tile> play() {
 				}else if(count>=3 && (i==temp.size()-1 ||!temp.get(i+1).sameColor(prev))) {
 					//a valid meld
 					nextplay.addAll(meld);
+					 
 					melds.add(count);
 					meld.clear();
 					meld.add(temp.get(i));
@@ -114,4 +123,14 @@ public ArrayList<Tile> play() {
 		}
 		return nextplay;
 	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		this.table=(HashMap<Integer, ArrayList<Tile>>) arg;
+		this.table.toString();
+	}
+
+
+
+
 }

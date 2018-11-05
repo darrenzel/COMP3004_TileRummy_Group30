@@ -2,18 +2,35 @@ package Project.TileRummy;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
-public class AI2 extends Player {
+import java.util.Observer;
+import java.util.Observable;
+public class AI2 extends Player implements Observer{
 	ArrayList<Tile> nextplay =new ArrayList<>();
 	ArrayList<Tile> meld = new ArrayList<>();
 	
 	Queue<Integer> melds = new LinkedList<>();
+	Queue<Integer> rowkey = new LinkedList<>();
+	public HashMap<Integer, ArrayList<Tile>> table;
+
+
+	Queue<Integer> index = new LinkedList<>();
+
 	public AI2(ArrayList<Tile> hand, String name, int index) {
 		super(hand, name, index);
 	}
-	
-	public ArrayList<Tile> play() {
+	public ArrayList<Tile> play(){
+		ArrayList<Tile> output = new  ArrayList<>();
+		if(playHand().size()+playTable(this.table).size()==hand.size()) {
+			output.addAll(playHand());
+			output.addAll(playTable(this.table));
+			return output;
+		}
+		return output;
+	}
+	public ArrayList<Tile> playHand() {
 		
 		
 		ArrayList<Tile> temp = new ArrayList<Tile>();
@@ -115,6 +132,61 @@ public class AI2 extends Player {
 		return nextplay;
 	}
 	
+	public ArrayList<Tile> playTable(HashMap<Integer, ArrayList<Tile>> table){
+		ArrayList<Tile> temp = new ArrayList<>();
+		System.out.println("0");
 
+		temp.addAll(hand);
+		temp.removeAll(playHand());
+		System.out.println("1");
+		ArrayList<Tile> playable = new ArrayList<>();
+		ArrayList<String> colors = new ArrayList<>();
+		ArrayList<Tile> refrash = new ArrayList<>();
+		for(Tile curr:temp) {
+			for(int key : table.keySet()) {
+				
+					for(Tile t:table.get(key)) {
+						colors.add(t.color);
+					}
+					System.out.println("4");
+
+					if(curr.value==table.get(key).get(0).value-1 && curr.color.equals(table.get(key).get(0).color)) {
+						rowkey.add(key);
+						index.add(0);
+						playable.add(curr);
+//						System.out.println("value");
+						return playable;
+
+					}else if(curr.value==table.get(key).get(table.get(key).size()-1).value && curr.color.equals(table.get(key).get(table.get(key).size()-1).color)) {
+						rowkey.add(key);
+						index.add(table.get(key).size()-1);
+						playable.add(curr);
+						return playable;
+
+					}
+					if(table.get(key).size()==3 &&!colors.contains(curr.color) ) {
+							rowkey.add(key);
+							index.add(0);
+							playable.add(curr);
+//							colors.add(curr.color);
+							refrash.add(curr);
+							refrash.addAll(table.get(key));
+							Collections.sort(refrash, Tile.colorComparator);
+							table.put(key, refrash);
+//							System.out.println("color");
+
+					
+					}
+				colors.clear();
+			}
+		}
+		
+		return playable;
+	}
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		this.table=(HashMap<Integer, ArrayList<Tile>>) arg1;
+		this.table.toString();		
+	}
 	
 }
